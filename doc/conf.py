@@ -2,6 +2,18 @@
 import sys, os
 import sphinx
 
+import sys
+from unittest.mock import MagicMock
+
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+            return MagicMock()
+
+MOCK_MODULES = ['Babel', 'decorator', 'docutils', 'ebaysdk', 'feedparser', 'gevent', 'greenlet', 'jcconv', 'Jinja2', 'lxml', 'Mako', 'MarkupSafe', 'mock', 'ofxparse', 'passlib', 'Pillow', 'psutil', 'psycogreen', 'psycopg2', 'pydot', 'pyparsing', 'pyPdf', 'pyserial', 'Chart', 'dateutil', 'ldap', 'openid', 'pytz', 'pyusb', 'PyYAML', 'qrcode', 'reportlab', 'requests', 'six', 'jurko', 'vatnumber', 'vobject', 'Werkzeug', 'wsgiref', 'XlsxWriter', 'xlwt']
+
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
